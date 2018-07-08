@@ -33,6 +33,8 @@ public class QuizActivity extends AppCompatActivity {
 
     private int mCurrentIndex = 0;
 
+    private int mNumRightAnsers = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +84,10 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                 updateQuestion();
+
+                /* Enable buttons when user provides an answer */
+                mTrueButton.setEnabled(true);
+                mFalseButton.setEnabled(true);
             }
         });
 
@@ -94,6 +100,10 @@ public class QuizActivity extends AppCompatActivity {
                     mCurrentIndex = mQuestionBank.length - 1;
                 }
                 updateQuestion();
+
+                /* Enable buttons when user provides an answer */
+                mTrueButton.setEnabled(true);
+                mFalseButton.setEnabled(true);
             }
         });
 
@@ -138,6 +148,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void updateQuestion() {
+//        Log.d(TAG, "Updating question text", new Exception());
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
     }
@@ -149,10 +160,29 @@ public class QuizActivity extends AppCompatActivity {
 
         if (userPressedTrue == answerIsTrue) {
             messageResId = R.string.correct_toast;
+            mNumRightAnsers++;
         } else {
             messageResId = R.string.incorrect_toast;
         }
 
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
+
+        /* Disable buttons when user provides an answer */
+        mTrueButton.setEnabled(false);
+        mFalseButton.setEnabled(false);
+
+        if (mCurrentIndex == mQuestionBank.length - 1) {
+            showScore();
+        }
+    }
+
+    private void showScore() {
+        int percentage = (int)(((float) mNumRightAnsers / mQuestionBank.length) * 100);
+        Toast.makeText(
+                this,
+                "Your score is : " + percentage + "%",
+                Toast.LENGTH_SHORT
+        ).show();
+        mNumRightAnsers = 0;
     }
 }
