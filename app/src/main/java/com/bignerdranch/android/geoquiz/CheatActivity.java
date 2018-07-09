@@ -40,7 +40,6 @@ public class CheatActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             mIsAnswerShown = savedInstanceState.getBoolean(EXTRA_ANSWER_SHOWN, false);
-            Log.d(TAG, "savedInstanceState mIsAnswerShown: " + mIsAnswerShown);
         }
 
         mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
