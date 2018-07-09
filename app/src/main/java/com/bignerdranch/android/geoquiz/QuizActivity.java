@@ -20,8 +20,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private Button mTrueButton;
     private Button mFalseButton;
-    private ImageButton mNextButton;
-    private ImageButton mPrevButton;
+    private Button mNextButton;
     private Button mCheatButton;
     private TextView mQuestionTextView;
 
@@ -74,7 +73,7 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
-        mNextButton = (ImageButton) findViewById(R.id.next_button);
+        mNextButton = (Button) findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,18 +84,6 @@ public class QuizActivity extends AppCompatActivity {
                 /* Enable buttons when user provides an answer */
                 mTrueButton.setEnabled(true);
                 mFalseButton.setEnabled(true);
-            }
-        });
-
-        mPrevButton = (ImageButton) findViewById(R.id.prev_button);
-        mPrevButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mCurrentIndex--;
-                if (mCurrentIndex < 0) {
-                    mCurrentIndex = mQuestionBank.length - 1;
-                }
-                updateQuestion();
             }
         });
 

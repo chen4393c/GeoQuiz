@@ -38,26 +38,13 @@
         android:layout_gravity="bottom|center_horizontal"
         android:text="@string/cheat_button"/>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/prev_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/arrow_left"
-            android:contentDescription="@string/prev_button"/>
-
-        <ImageButton
-            android:id="@+id/next_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/arrow_right"
-            android:contentDescription="@string/next_button"/>
-
-    </LinearLayout>
+        android:text="@string/next_button"
+        android:drawableRight="@drawable/arrow_right"
+        android:contentDescription="@string/next_button"
+        android:layout_gravity="bottom|right"/>
 
 </FrameLayout>
