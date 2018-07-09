@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +36,7 @@ public class QuizActivity extends AppCompatActivity {
     private int mCurrentIndex = 0;
     private boolean mIsCheater;
 
-    private int mNumRightAnsers = 0;
+    private int mNumRightAnswers = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,7 +174,7 @@ public class QuizActivity extends AppCompatActivity {
         } else {
             if (userPressedTrue == answerIsTrue) {
                 messageResId = R.string.correct_toast;
-                mNumRightAnsers++;
+                mNumRightAnswers++;
             } else {
                 messageResId = R.string.incorrect_toast;
             }
@@ -193,12 +192,12 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void showScore() {
-        int percentage = (int)(((float) mNumRightAnsers / mQuestionBank.length) * 100);
+        int percentage = (int)(((float) mNumRightAnswers / mQuestionBank.length) * 100);
         Toast.makeText(
                 this,
                 "Your score is : " + percentage + "%",
                 Toast.LENGTH_SHORT
         ).show();
-        mNumRightAnsers = 0;
+        mNumRightAnswers = 0;
     }
 }
